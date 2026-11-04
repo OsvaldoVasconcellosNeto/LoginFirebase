@@ -11,9 +11,29 @@
       android:id="@+id/btn_sair"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginTop="268dp"
-      android:text="Button"
+      android:layout_marginStart="16dp"
+      android:layout_marginBottom="16dp"
+      android:text="Sair"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintStart_toStartOf="parent" />
+
+  <Button
+      android:id="@+id/btn_go_add"
+      android:layout_width="260dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="240dp"
+      android:text="Adicionar"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent" />
+
+  <Button
+      android:id="@+id/btn_go_list"
+      android:layout_width="260dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="84dp"
+      android:text="Lista"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/btn_go_add" />
 </androidx.constraintlayout.widget.ConstraintLayout>
