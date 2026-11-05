@@ -17,7 +17,7 @@ class ClienteAdapter(
 
         val nome: TextView = view.findViewById(R.id.txt_Nome)
         val cpf: TextView = view.findViewById(R.id.txt_Cpf)
-        val data: TextView = view.findViewById(R.id.txt_Data)
+        val preco: TextView = view.findViewById(R.id.txt_Preco)
     }
 
     override fun onCreateViewHolder(
@@ -40,13 +40,8 @@ class ClienteAdapter(
 
         holder.nome.text = cliente.nome
         holder.cpf.text = cliente.cpf
+        holder.preco.text = cliente.preco
 
-        holder.data.text = cliente.ultima_compra?.toDate()?.let {
-            SimpleDateFormat(
-                "dd/MM/yyyy HH:mm",
-                Locale.getDefault()
-            ).format(it)
-        } ?: "Sem data"
     }
 
     override fun getItemCount(): Int {

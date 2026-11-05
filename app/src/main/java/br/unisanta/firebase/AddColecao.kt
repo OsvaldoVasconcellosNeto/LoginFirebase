@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -31,6 +30,7 @@ class AddColecao : AppCompatActivity() {
 
             val nome = findViewById<EditText>(R.id.edt_Nome).text.toString()
             val cpf = findViewById<EditText>(R.id.edt_Cpf).text.toString()
+            val preco = findViewById<EditText>(R.id.edt_Preco).text.toString()
 
             if (nome.isEmpty() || cpf.isEmpty()) {
                 Toast.makeText(
@@ -42,15 +42,13 @@ class AddColecao : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            val stamp = Timestamp.now()
-
             val hash_cliente = hashMapOf(
                 "nome" to nome,
-                "cpf" to cpf,
-                "ultima_compra" to stamp
+                "categoria" to cpf,
+                "preco" to preco
             )
 
-            db.collection("colecao_cliente")
+            db.collection("colecao_item")
                 .add(hash_cliente)
                 .addOnCompleteListener { task ->
 
@@ -59,11 +57,12 @@ class AddColecao : AppCompatActivity() {
                         // Limpa os campos
                         findViewById<EditText>(R.id.edt_Nome).text.clear()
                         findViewById<EditText>(R.id.edt_Cpf).text.clear()
+                        findViewById<EditText>(R.id.edt_Preco).text.clear()
 
                         // Popup de sucesso
                         Toast.makeText(
                             this,
-                            "Cliente cadastrado com sucesso!",
+                            "Item cadastrado com sucesso!",
                             Toast.LENGTH_LONG
                         ).show()
 

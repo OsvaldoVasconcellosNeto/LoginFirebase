@@ -18,14 +18,14 @@
         android:id="@+id/txt_Cpf"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="CPF"
+        android:text="Categoria"
         android:textSize="16sp"/>
 
     <TextView
-        android:id="@+id/txt_Data"
+        android:id="@+id/txt_Preco"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Última compra"
-        android:textSize="14sp"/>
+        android:text="Preço"
+        android:textSize="16sp"/>
 
 </LinearLayout>

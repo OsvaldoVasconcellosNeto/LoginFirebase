@@ -1,6 +1,7 @@
 package br.unisanta.firebase
 
 import android.os.Bundle
+import android.widget.Button
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -30,7 +31,7 @@ class ListColecao : AppCompatActivity() {
 
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        db.collection("colecao_cliente")
+        db.collection("colecao_item")
             .get()
             .addOnSuccessListener { resultado ->
 
@@ -50,9 +51,13 @@ class ListColecao : AppCompatActivity() {
 
                 Toast.makeText(
                     this,
-                    "Erro ao buscar clientes: ${erro.message}",
+                    "Erro ao buscar itens: ${erro.message}",
                     Toast.LENGTH_LONG
                 ).show()
             }
+
+        findViewById<Button>(R.id.btn_list_sair).setOnClickListener {
+            finish()
+        }
     }
 }
