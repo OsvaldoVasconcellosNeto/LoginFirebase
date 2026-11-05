@@ -1,10 +1,15 @@
 package br.unisanta.firebase
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.firestore
 
 class ListColecao : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,5 +22,37 @@ class ListColecao : AppCompatActivity() {
             insets
         }
 
+        val db = Firebase.firestore
+
+        val recyclerView = findViewById<RecyclerView>(
+            R.id.lista_clientes
+        )
+
+        recyclerView.layoutManager = LinearLayoutManager(this)
+
+        db.collection("colecao_cliente")
+            .get()
+            .addOnSuccessListener { resultado ->
+
+                val listaClientes = mutableListOf<Cliente>()
+
+                for (documento in resultado) {
+
+                    val cliente = documento.toObject(Cliente::class.java)
+
+                    listaClientes.add(cliente)
+                }
+
+                recyclerView.adapter = ClienteAdapter(listaClientes)
+
+            }
+            .addOnFailureListener { erro ->
+
+                Toast.makeText(
+                    this,
+                    "Erro ao buscar clientes: ${erro.message}",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
     }
 }
